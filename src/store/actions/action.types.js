@@ -1,0 +1,19 @@
+// Auth Actions
+export const LOGIN = "LOGIN";
+export const SIGNUP = "SIGNUP";
+export const START_AUTH_LOADING = "START_AUTH_LOADING";
+export const END_AUTH_LOADING = "END_AUTH_LOADING";
+
+export const ADD_FAVOURITE = "ADD_FAVOURITE";
+export const REMOVE_FAVOURITE = "REMOVE_FAVOURITE";
+export const GET_FAVOURITES = 'GET_FAVOURITES'
+export const VIEW_FAVOURITE = 'VIEW_FAVOURITE'
+export const REMOVE_FAVOURITE_VIEW = 'REMOVE_FAVOURITE_VIEW'
+
+export const GET_MOVIES = 'GET_MOVIES'
+export const VIEW_MOVIE = 'VIEW_MOVIE'
+export const REMOVE_MOVIE = 'REMOVE_MOVIE'
+
+
+export const SHOW_FEEDBACK = "SHOW_FEEDBACK";
+export const CLEAR_FEEDBACK = "CLEAR_FEEDBACK";
