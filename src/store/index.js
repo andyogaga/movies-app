@@ -5,10 +5,12 @@ import storage from 'redux-persist/lib/storage' // defaults to localStorage for 
 import thunk from 'redux-thunk'
  
 const persistConfig = {
-  key: 'v002',
+  key: 'v001',
   storage,
 }
  
 const persistedReducer = persistReducer(persistConfig, combineReducers)
 
-export default createStore(persistedReducer, applyMiddleware(thunk));
+const store = createStore(persistedReducer, applyMiddleware(thunk));
+
+export default store;

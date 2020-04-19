@@ -1,7 +1,7 @@
 import {
   SHOW_FEEDBACK,
   CLEAR_FEEDBACK,
-} from '../actions/actionTypes';
+} from '../actions/action.types';
 
 const init = {
   feedbacks: [],
