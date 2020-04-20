@@ -15,7 +15,7 @@ const Login = (props) => {
     dispatch(sendLoginRequest({ ...values, setSubmitting }));
   };
   return (
-    <Grid verticalAlign="middle" columns={2} centered>
+    <Grid verticalAlign="middle" columns={2} centered stretched>
       <StyledLoginGridColumn mobile="16" tablet="12" computer="8">
         <Header textAlign="center" as="h3">
           Login
@@ -39,7 +39,7 @@ const Login = (props) => {
               <StyledSegment padded>
                   <Label
                     className="ui label"
-                    style={{ backgroundColor: "transparent" }}
+                    style={{ backgroundColor: "transparent", marginTop: '1rem' }}
                     htmlFor="username"
                   >
                     Username
@@ -50,6 +50,8 @@ const Login = (props) => {
                     name="username"
                     placeholder="andyogaga"
                     value={values.username}
+                    onChange={handleChange}
+                    onBlur={handleBlur}
                   />
                   {touched.username && errors.username ? (
                   <Label
@@ -64,17 +66,19 @@ const Login = (props) => {
                 
                 <Label
                     className="ui label"
-                    style={{ backgroundColor: "transparent" }}
+                    style={{ backgroundColor: "transparent", marginTop: '1rem'  }}
                     htmlFor="password"
                   >
                     Password
                   </Label>
                   <StyledFormInput
-                    type="text"
+                    type="password"
                     id="password"
                     name="password"
                     placeholder="Enter Password"
                     value={values.password}
+                    onChange={handleChange}
+                    onBlur={handleBlur}
                   />
                   {touched.password && errors.password ? (
                   <Label
@@ -88,8 +92,10 @@ const Login = (props) => {
                 ) : null}
 
                 <Button
-                  size="huge"
+                  size="normal"
                   color="blue"
+                  fluid={false}
+                  loading={isSubmitting}
                   onClick={handleSubmit}
                   disabled={!isValid || isSubmitting}
                 >
@@ -101,7 +107,7 @@ const Login = (props) => {
         </Formik>
         <StyledLoginFooter textAlign="center" size="small">
           <span>Don&apos;t have an account yet? </span>
-          <Button as={Link} to="/signup" basic compact color="green">
+          <Button as={Link} to="/signup" basic compact color="blue">
             Sign Up
           </Button>
         </StyledLoginFooter>

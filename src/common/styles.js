@@ -4,7 +4,7 @@ import { Input, Segment } from "semantic-ui-react";
 export const StyledFormInput = styled(Input)`
   &&& input {
     background: #fff;
-    border: ${(props) => `1px solid ${props.color ? props.color : "blue"}`};
+    border: ${(props) => `1px solid ${props.color ? props.color : "#bebdbd"}`};
     border-radius: ${(props) =>
       `${props.borderRadius ? props.borderRadius : "0.3rem"}`};
     padding: ${(props) => (props.borderRadius ? props.borderRadius : "0.8rem")};
@@ -15,8 +15,10 @@ export const StyledSegment = styled(Segment)`
   &&& {
     border-radius: ${(props) =>
       `${props.borderRadius ? props.borderRadius : "0.8rem"}`};
-    border: ${(props) => `1px solid ${props.color ? props.color : "blue"}`};
-    box-shadow: none;
+    border: ${(props) => `1px solid ${props.color ? props.color : "#f0f0f0"}`};
+    box-shadow: 2px 2px 2px #f0f0f0;
+    display: flex;
+  flex-direction: column;
   }
 `;
 
