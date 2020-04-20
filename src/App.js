@@ -9,6 +9,7 @@ import LoginContainer from "./pages/login/login.container";
 import ResponsiveContainer from "./components/layout-container.component";
 import PrivateRoute from "./components/private.route";
 import store from "./store";
+import SignupContainer from "./pages/signup/signup.container";
 
 const history = createBrowserHistory();
 
@@ -22,7 +23,7 @@ export const Root = () => {
             <Switch>
               <Route exact path="/" component={LoginContainer} />
               <Route exact path="/login" component={LoginContainer} />
-              {/* <Route exact path="/signup" component={SignupPage} /> */}
+              <Route exact path="/signup" component={SignupContainer} />
 
               <PrivateRoute
                 isAuthenticated={isAuthenticated}

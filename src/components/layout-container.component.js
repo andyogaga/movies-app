@@ -14,15 +14,13 @@ const ResponsiveContainer = ({ isAuthenticated, children }) => {
     <BaseLayoutContainer>
       <Responsive
         getWidth={() => window.innerWidth}
-        minWidth={Responsive.onlyTablet.minWidth}
-        style={{ flex: 1 }}
+        minWidth={Responsive.onlyMobile.minWidth}
+        style={{ height: '100vh' }}
       >
         <Menu>
           <Container fluid style={{ alignItems: "center", padding: "0 2rem" }}>
-            <Menu.Menu position="left" style={{ alignItems: "center" }}>
-              <Menu.Item as={Link} to="/" name="Home" />
-            </Menu.Menu>
             <Menu.Item position="right">
+            <Menu.Item as={Link} to="/" name="Home" />
               {isAuthenticated ? (
                 <>
                 <Button as={Link} to="/favourites" basic>

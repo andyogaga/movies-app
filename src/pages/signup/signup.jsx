@@ -5,25 +5,25 @@ import { useDispatch } from "react-redux";
 import { Formik } from "formik";
 import { initialValuesAuth, authFormSchema } from "../../utils/constants";
 import { StyledFormInput, StyledSegment } from "../../common/styles";
-import { StyledLoginGridColumn, StyledLoginFooter } from "./login.styles";
+import { StyledSignupGridColumn, StyledSignupFooter } from "./signup.styles";
 
 
-const Login = (props) => {
+const Signup = (props) => {
   const dispatch = useDispatch();
-  const login = (values, { setSubmitting }) => {
-    const {sendLoginRequest} = props;
-    dispatch(sendLoginRequest({ ...values, setSubmitting }));
+  const signup = (values, { setSubmitting }) => {
+    const {sendSignupRequest} = props;
+    dispatch(sendSignupRequest({ ...values, setSubmitting }));
   };
   return (
     <Grid verticalAlign="middle" columns={2} centered stretched style={{height: '90%'}}>
-      <StyledLoginGridColumn mobile="13" tablet="12" computer="8">
+      <StyledSignupGridColumn mobile="13" tablet="12" computer="8">
         <Header textAlign="center" as="h3">
-          Login
+          Sign up
         </Header>
         <Formik
           initialValues={initialValuesAuth}
           validationSchema={authFormSchema}
-          onSubmit={login}
+          onSubmit={signup}
         >
           {({
             values,
@@ -99,21 +99,21 @@ const Login = (props) => {
                   onClick={handleSubmit}
                   disabled={!isValid || isSubmitting}
                 >
-                  Log In
+                  Register
                 </Button>
               </StyledSegment>
             );
           }}
         </Formik>
-        <StyledLoginFooter textAlign="center" size="small">
-          <span>Don&apos;t have an account yet? </span>
-          <Button as={Link} to="/signup" basic compact color="blue">
-            Sign Up
+        <StyledSignupFooter textAlign="center" size="small">
+          <span>Already have an account? </span>
+          <Button as={Link} to="/login" basic compact color="blue">
+            Log in
           </Button>
-        </StyledLoginFooter>
-      </StyledLoginGridColumn>
+        </StyledSignupFooter>
+      </StyledSignupGridColumn>
     </Grid>
   );
 };
 
-export default Login;
+export default Signup;
