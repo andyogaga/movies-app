@@ -1,5 +1,5 @@
 import React from "react";
-import { Card, Image, Icon, Button } from "semantic-ui-react";
+import { Card, Image, Button } from "semantic-ui-react";
 import moment from "moment";
 
 const MovieCard = ({ movie }) => {
@@ -7,21 +7,18 @@ const MovieCard = ({ movie }) => {
     <Card>
       <Image src={movie.posterPath} wrapped ui={false} />
       <Card.Content>
-        <Card.Header>{movie.posterPath}</Card.Header>
+        <Card.Header>{movie.title}</Card.Header>
         <Card.Meta>
           <span className="date">
-            {moment(movie.releaseDate.join(" ").format("dd, MM, YYYY"))}
+            {moment(movie.releaseDate.join(" ")).format("ddd, DD MMM, YYYY")}
           </span>
         </Card.Meta>
         <Card.Description>{movie.overview}</Card.Description>
       </Card.Content>
       <Card.Content extra>
         <div className="ui two buttons">
-          <Button basic color="green">
-            Approve
-          </Button>
-          <Button basic color="red">
-            Decline
+          <Button basic color="blue" floated="right">
+            View
           </Button>
         </div>
       </Card.Content>

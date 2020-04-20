@@ -5,10 +5,10 @@ import {showFeedback} from './feedbackActions';
 export const getMovies = page => async dispatch => {
   try {
     const movies = await callApi(`/movie/list?page=${page}`, null, 'GET');
-    if (movies && movies.length) {
+    if (movies && Array.isArray(movies.content)) {
       dispatch({
         type: GET_MOVIES,
-        payload: movies,
+        payload: movies.content,
       });
     }
   } catch (error) {

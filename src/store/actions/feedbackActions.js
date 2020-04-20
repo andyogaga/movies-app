@@ -1,4 +1,4 @@
-import {CLEAR_FEEDBACK, SHOW_FEEDBACK} from './actionTypes';
+import {CLEAR_FEEDBACK, SHOW_FEEDBACK} from './action.types';
 import { callApi } from '../../utils';
 
 export const showFeedback = feedback => {
