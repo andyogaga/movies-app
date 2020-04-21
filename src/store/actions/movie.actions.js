@@ -18,15 +18,12 @@ export const getMovies = page => async dispatch => {
 };
 
 export const getMovieDetail = (
-  id
+  id, cb = () => {}
 ) => async dispatch => {
   try {
     const movie = await callApi(`/movie/detail/${id}`, null, 'GET');
     if (movie) {
-      dispatch({
-        type: VIEW_MOVIE,
-        payload: movie,
-      });
+      cb(movie)
     }
   } catch (error) {
     dispatch(
@@ -39,5 +36,6 @@ export const getMovieDetail = (
           : 'Error in connection',
       ),
     );
+    cb(null)
   }
 };

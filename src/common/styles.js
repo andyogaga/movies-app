@@ -37,3 +37,15 @@ export const BaseLayoutContainer = styled.div`
     position: fixed;
   }
 `
+
+export const WelcomeBoard = styled.div`
+  &&& {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #f0f0f0;
+    height: 35vh;
+    margin-bottom: 2rem;
+  }
+`

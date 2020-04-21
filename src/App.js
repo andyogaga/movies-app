@@ -11,6 +11,7 @@ import PrivateRoute from "./components/private.route";
 import store from "./store";
 import SignupContainer from "./pages/signup/signup.container";
 import HomeContainer from "./pages/home/home.container";
+import SingleMovie from './pages/single/single-movie.container'
 
 const history = createBrowserHistory();
 
@@ -25,7 +26,7 @@ export const Root = () => {
               <Route exact path="/" component={HomeContainer} />
               <Route exact path="/login" component={LoginContainer} />
               <Route exact path="/signup" component={SignupContainer} />
-
+              <Route path="/movie/:id" component={SingleMovie} />
               <PrivateRoute
                 isAuthenticated={isAuthenticated}
                 path="/my/movies"

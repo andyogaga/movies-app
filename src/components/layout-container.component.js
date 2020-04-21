@@ -15,9 +15,8 @@ const ResponsiveContainer = ({ isAuthenticated, children }) => {
       <Responsive
         getWidth={() => window.innerWidth}
         minWidth={Responsive.onlyMobile.minWidth}
-        style={{ height: '100vh' }}
       >
-        <Menu>
+        <Menu style={{margin: 0}}>
           <Container fluid style={{ alignItems: "center", padding: "0 2rem" }}>
             <Menu.Item position="right">
             <Menu.Item as={Link} to="/" name="Home" />

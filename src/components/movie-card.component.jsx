@@ -1,6 +1,7 @@
 import React from "react";
 import { Card, Image, Button } from "semantic-ui-react";
 import moment from "moment";
+import { Link } from "react-router-dom";
 
 const MovieCard = ({ movie }) => {
   return (
@@ -17,7 +18,7 @@ const MovieCard = ({ movie }) => {
       </Card.Content>
       <Card.Content extra>
         <div className="ui two buttons">
-          <Button basic color="blue" floated="right">
+          <Button basic color="blue" floated="right" as={Link} to={`/movie/${movie.id}`} >
             View
           </Button>
         </div>
