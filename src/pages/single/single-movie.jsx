@@ -11,6 +11,18 @@ const SingleMovieDetails = ({movie}) => {
         <Header >
           {movie.title}
         </Header>
+        <Header >
+          {movie.title}
+        </Header>
+        <Header >
+          {movie.title}
+        </Header>
+        <Header >
+          {movie.title}
+        </Header>
+        <Header >
+          {movie.title}
+        </Header>
       </Grid.Column>
     </Grid>
   )

@@ -1,13 +1,15 @@
-import React from 'react'
-import Login from './login'
+import React from "react";
+import Login from "./login";
+import { useDispatch } from "react-redux";
+import { sendLoginRequest } from "../../store/actions/auth.actions";
 
-const LoginContainer = props => {
+const LoginContainer = () => {
+  const dispatch = useDispatch();
+  const login = (data) => {
+    dispatch(sendLoginRequest(data))
+  };
 
-  const {sendLoginRequest} = props;
+  return <Login sendLoginRequest={login} />;
+};
 
-    return (
-      <Login sendLoginRequest={sendLoginRequest} />
-    )
-}
-
-export default LoginContainer
+export default LoginContainer;

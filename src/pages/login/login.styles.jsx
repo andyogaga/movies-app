@@ -2,6 +2,9 @@ import styled from 'styled-components'
 import {Header, Grid} from 'semantic-ui-react'
 
 export const StyledLoginGridColumn = styled(Grid.Column)`
+  &&& {
+    margin-top: 3rem;
+  }
   .header {
     text-transform: uppercase;
   }

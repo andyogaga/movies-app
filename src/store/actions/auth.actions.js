@@ -2,9 +2,11 @@ import { callApi } from "../../utils";
 import { LOGIN } from "./action.types";
 import { showFeedback } from "./feedbackActions";
 
-export const sendLoginRequest = ({ username, password }, cb) => async (
-  dispatch
-) => {
+export const sendLoginRequest = ({
+  username,
+  password,
+  setSubmitting,
+}) => async (dispatch) => {
   try {
     const res = await callApi("/user/login", { username, password }, "POST");
     if (res) {
@@ -26,11 +28,13 @@ export const sendLoginRequest = ({ username, password }, cb) => async (
           : "Error in connection"
       )
     );
+  } finally {
+    setSubmitting(false);
   }
 };
 
-export const sendSignupRequest = (data, cb) => async (dispatch) => {
-  const { username, password } = data;
+export const sendSignupRequest = (data) => async (dispatch) => {
+  const { username, password, setSubmitting } = data;
   try {
     const res = await callApi(
       "/user/create",
@@ -57,6 +61,6 @@ export const sendSignupRequest = (data, cb) => async (dispatch) => {
       )
     );
   } finally {
-    cb();
+    setSubmitting(false);
   }
 };

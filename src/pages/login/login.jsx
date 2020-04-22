@@ -1,7 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import { Grid, Header, Button, Label } from "semantic-ui-react";
-import { useDispatch } from "react-redux";
 import { Formik } from "formik";
 import { initialValuesAuth, authFormSchema } from "../../utils/constants";
 import { StyledFormInput, StyledSegment } from "../../common/styles";
@@ -9,10 +8,9 @@ import { StyledLoginGridColumn, StyledLoginFooter } from "./login.styles";
 
 
 const Login = (props) => {
-  const dispatch = useDispatch();
   const login = (values, { setSubmitting }) => {
     const {sendLoginRequest} = props;
-    dispatch(sendLoginRequest({ ...values, setSubmitting }));
+    sendLoginRequest({ ...values, setSubmitting });
   };
   return (
     <Grid verticalAlign="middle" columns={2} centered stretched style={{height: '90%'}}>
