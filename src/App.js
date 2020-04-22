@@ -1,4 +1,4 @@
-import React, { Suspense } from "react";
+import React, { Suspense, lazy } from "react";
 import "./App.css";
 import { Router, Route, Switch } from "react-router-dom";
 
@@ -12,7 +12,7 @@ import store from "./store";
 import SignupContainer from "./pages/signup/signup.container";
 import HomeContainer from "./pages/home/home.container";
 import SingleMovie from './pages/single/single-movie.container'
-
+const Favourites = lazy(() => import("./pages/favourites/favourites.container"))
 const history = createBrowserHistory();
 
 export const Root = () => {
@@ -36,7 +36,7 @@ export const Root = () => {
                 path="/movies/:id"
               />
               <PrivateRoute
-                // component={}
+                component={Favourites}
                 path="/favourites"
               />
               <PrivateRoute

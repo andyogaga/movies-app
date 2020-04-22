@@ -4,11 +4,11 @@ import {showFeedback} from './feedbackActions';
 
 export const getFavourites = id => async dispatch => {
   try {
-    const movies = await callApi(`/favourites/${id}`, null, 'GET');
-    if (movies && movies.length) {
+    const favourites = await callApi(`/favourites/${id}`, null, 'GET');
+    if (Array.isArray(favourites)) {
       dispatch({
         type: GET_FAVOURITES,
-        payload: movies,
+        payload: favourites,
       });
     }
   } catch (error) {

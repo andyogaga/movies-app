@@ -5,6 +5,7 @@ import { Formik } from "formik";
 import { initialValuesAuth, authFormSchema } from "../../utils/constants";
 import { StyledFormInput, StyledSegment } from "../../common/styles";
 import { StyledLoginGridColumn, StyledLoginFooter } from "./login.styles";
+import { func } from "prop-types";
 
 
 const Login = (props) => {
@@ -113,5 +114,9 @@ const Login = (props) => {
     </Grid>
   );
 };
+
+Login.propTypes = {
+  sendLoginRequest: func
+}
 
 export default Login;

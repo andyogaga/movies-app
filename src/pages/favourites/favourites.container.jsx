@@ -1,15 +1,16 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
 import { connect, useDispatch } from "react-redux";
 import { getFavourites } from "../../store/actions/favourite.actions";
 import { Container, Header } from "semantic-ui-react";
 import { WelcomeBoard } from "../../common/styles";
 import { bool, arrayOf, shape } from "prop-types";
 import Favourites from "./favourites";
+import { number } from "prop-types";
 
-const FavouritesContainer = ({ isAuthenticated, movies }) => {
+const FavouritesContainer = ({ favourites, user }) => {
   const dispatch = useDispatch();
-  const [page, setPage] = useState(1);
   useEffect(() => {
+    const {id} = user;
     dispatch(getFavourites(id));
   }, []);
   return (
@@ -18,23 +19,26 @@ const FavouritesContainer = ({ isAuthenticated, movies }) => {
         <Header as="h1" color="blue" >Movies</Header>
       </WelcomeBoard>
       <Container>
-        <Favourites movies={movies} />
+        <Favourites favourites={favourites} />
       </Container>
     </>
   );
 };
 
-const mapState = ({ auth, movies }) => {
+const mapState = ({ auth, favourites }) => {
   return {
     isAuthenticated: auth.isAuthenticated,
     user: auth.user,
-    movies: movies.movies,
+    favourites: favourites.favourites,
   };
 };
 
 FavouritesContainer.propTypes = {
   isAuthenticated: bool,
-  movies: arrayOf(shape({}))
+  favourites: arrayOf(shape({})),
+  user: shape({
+    id: number
+  })
 }
 
 export default connect(mapState)(FavouritesContainer);

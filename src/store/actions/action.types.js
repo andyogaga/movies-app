@@ -1,6 +1,7 @@
 // Auth Actions
 export const LOGIN = "LOGIN";
 export const SIGNUP = "SIGNUP";
+export const LOGOUT = "LOGOUT";
 export const START_AUTH_LOADING = "START_AUTH_LOADING";
 export const END_AUTH_LOADING = "END_AUTH_LOADING";
 

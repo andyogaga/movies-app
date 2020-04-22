@@ -1,12 +1,11 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import { Grid, Header, Button, Label } from "semantic-ui-react";
-import { useDispatch } from "react-redux";
 import { Formik } from "formik";
 import * as Yup from "yup";
-import { initialValuesAuth, authFormSchema } from "../../utils/constants";
 import { StyledFormInput, StyledSegment } from "../../common/styles";
 import { StyledSignupGridColumn, StyledSignupFooter } from "./signup.styles";
+import { func } from "prop-types";
 
 export const initialValues = {
   firstName: "",
@@ -31,10 +30,9 @@ export const signupSchema = Yup.object().shape({
 });
 
 const Signup = (props) => {
-  const dispatch = useDispatch();
   const signup = (values, { setSubmitting }) => {
     const { sendSignupRequest } = props;
-    dispatch(sendSignupRequest({ ...values, setSubmitting }));
+    sendSignupRequest({ ...values, setSubmitting });
   };
   return (
     <Grid
@@ -194,6 +192,10 @@ const Signup = (props) => {
       </StyledSignupGridColumn>
     </Grid>
   );
+};
+
+Signup.propTypes = {
+  sendSignupRequest: func,
 };
 
 export default Signup;

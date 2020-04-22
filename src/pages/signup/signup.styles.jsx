@@ -5,6 +5,7 @@ export const StyledSignupGridColumn = styled(Grid.Column)`
   &&& {
     background-color: #f9f9f9;
     border-radius: 1.5rem;
+    margin-top: 3rem;
   }
   .header {
     text-transform: uppercase;

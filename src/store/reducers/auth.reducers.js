@@ -1,12 +1,10 @@
 import {
-  LOGIN,
+  LOGIN, LOGOUT,
 } from "../actions/action.types";
 
 const initialState = {
   user: null,
-  isAuthenticated: false,
-  token: "",
-  isLoading: false
+  isAuthenticated: false
 };
 
 export const authReducer = (state = initialState, action) => {
@@ -14,9 +12,10 @@ export const authReducer = (state = initialState, action) => {
     case LOGIN:
       return {
         user: action.user,
-        isAuthenticated: true,
-        token: action.token
+        isAuthenticated: true
       };
+      case LOGOUT:
+        return initialState;
     default:
       return state;
   }
