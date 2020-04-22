@@ -4,8 +4,9 @@ import MovieCard from "../../components/movie-card.component";
 import { removeFavourite } from "../../store/actions/favourite.actions";
 import { useDispatch } from "react-redux";
 import { shape, func } from "prop-types";
+import { number } from "prop-types";
 
-const Favourites = ({ favourites, user, history, setPage, setLoading }) => {
+const Favourites = ({ favourites, user, history, setPage, setLoading, page }) => {
   const dispatch = useDispatch();
 
   const onRemoveFavourite = (id, cb) => {
@@ -38,6 +39,7 @@ const Favourites = ({ favourites, user, history, setPage, setLoading }) => {
         onPageChange={(e, data) => {
           setPage(data.activePage);
         }}
+        activePage={page}
         ellipsisItem={null}
         firstItem={null}
         lastItem={null}
@@ -53,6 +55,7 @@ Favourites.propTypes = {
   user: shape({}),
   history: shape({}),
   setPage: func,
-  setLoading: func
+  setLoading: func,
+  page: number
 };
 export default Favourites;

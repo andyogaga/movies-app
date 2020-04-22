@@ -3,8 +3,9 @@ import { Grid, Pagination } from "semantic-ui-react";
 import MovieCard from "../../components/movie-card.component";
 import { arrayOf, shape, bool } from "prop-types";
 import { func } from "prop-types";
+import { number } from "prop-types";
 
-const Home = ({ movies, isAuthenticated, history, setPage }) => {
+const Home = ({ movies, isAuthenticated, history, setPage, page }) => {
   return (
     <>
       <Grid columns={4} doubling>
@@ -28,6 +29,7 @@ const Home = ({ movies, isAuthenticated, history, setPage }) => {
           setPage(data.activePage)
         }}
         defaultActivePage={1}
+        activePage={page}
         ellipsisItem={null}
         firstItem={null}
         lastItem={null}
@@ -42,7 +44,8 @@ Home.propTypes = {
   movies: arrayOf(shape({})),
   isAuthenticated: bool,
   history: shape({}),
-  setPage: func
+  setPage: func,
+  page: number
 };
 
 export default Home;

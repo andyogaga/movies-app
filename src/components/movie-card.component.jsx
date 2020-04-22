@@ -50,6 +50,7 @@ const MovieCard = ({
               name="delete"
               onClick={() => {
                 if (typeof removeFavourite === "function") {
+                  setLoading(true)
                   removeFavourite(movie.id, res => {
                     if(res){
                       dispatch(getFavourites(user && user.id, setLoading))

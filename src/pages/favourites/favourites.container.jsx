@@ -48,6 +48,7 @@ const FavouritesContainer = ({ favourites, user }) => {
               history={history}
               setPage={setPage}
               setLoading={setLoading}
+              page={page}
             />
           </Container>
         </>

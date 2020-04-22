@@ -32,7 +32,7 @@ const HomeContainer = ({ isAuthenticated, movies, history }) => {
               isAuthenticated={isAuthenticated}
               setPage={setPage}
               history={history}
-              
+              page={page}
             />
           </Container>
         </>
