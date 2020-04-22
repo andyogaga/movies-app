@@ -8,10 +8,12 @@ import PageLoader from "./components/loader.component";
 import LoginContainer from "./pages/login/login.container";
 import ResponsiveContainer from "./components/layout-container.component";
 import PrivateRoute from "./components/private.route";
-import store from "./store";
+import store, { persistor } from "./store";
 import SignupContainer from "./pages/signup/signup.container";
 import HomeContainer from "./pages/home/home.container";
 import SingleMovie from "./pages/single/single-movie.container";
+import { PersistGate } from "redux-persist/integration/react";
+
 const Favourites = lazy(() =>
   import("./pages/favourites/favourites.container")
 );
@@ -53,7 +55,9 @@ export const Root = () => {
 
 const App = () => (
   <Provider store={store}>
-    <Root />
+    <PersistGate loading={<PageLoader />} persistor={persistor}>
+      <Root />
+    </PersistGate>
   </Provider>
 );
 

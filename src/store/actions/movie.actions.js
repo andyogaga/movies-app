@@ -1,4 +1,4 @@
-import {GET_MOVIES, VIEW_MOVIE } from './action.types';
+import {GET_MOVIES } from './action.types';
 import {callApi} from '../../utils';
 import {showFeedback} from './feedbackActions';
 

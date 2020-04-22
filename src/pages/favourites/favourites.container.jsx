@@ -7,7 +7,7 @@ import { bool, arrayOf, shape } from "prop-types";
 import Favourites from "./favourites";
 import { number } from "prop-types";
 
-const FavouritesContainer = ({ favourites, user }) => {
+const FavouritesContainer = ({ favourites, user, history }) => {
   const dispatch = useDispatch();
   useEffect(() => {
     const {id} = user;
@@ -16,10 +16,10 @@ const FavouritesContainer = ({ favourites, user }) => {
   return (
     <>
       <WelcomeBoard >
-        <Header as="h1" color="blue" >Movies</Header>
+        <Header as="h1" color="blue" >Favourites</Header>
       </WelcomeBoard>
       <Container>
-        <Favourites favourites={favourites} />
+        <Favourites favourites={favourites} user={user} history={history} />
       </Container>
     </>
   );
@@ -38,7 +38,8 @@ FavouritesContainer.propTypes = {
   favourites: arrayOf(shape({})),
   user: shape({
     id: number
-  })
+  }),
+  history: shape({})
 }
 
 export default connect(mapState)(FavouritesContainer);

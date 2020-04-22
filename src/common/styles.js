@@ -45,7 +45,7 @@ export const WelcomeBoard = styled.div`
     justify-content: center;
     align-items: center;
     background-color: #f0f0f0;
-    height: 35vh;
+    height: ${props => props.height ? props.height : '25rem'};
     margin-bottom: 2rem;
   }
 `
