@@ -20,6 +20,7 @@ The page will reload if you make edits.<br />
 
 With regards to requirements, I was not able to fulfil the following requirements.
  - Tests (I had plans to write user interaction tests using Kent C. Dodds React Testing Library and Jest but due to time constraints and existing workload, I could not get to it).
+ - I did not display the trailer videos from youtube.
 
 ### Constructive feedback
  - While implementing the pagination, I was not able to determine the total possible movies that were in the database, henc I could not provide an accurate total pages.
