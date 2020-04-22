@@ -17,7 +17,7 @@ import { PersistGate } from "redux-persist/integration/react";
 const Favourites = lazy(() =>
   import("./pages/favourites/favourites.container")
 );
-const history = createBrowserHistory();
+export const history = createBrowserHistory();
 
 export const Root = () => {
   const isAuthenticated = useSelector(({ auth }) => auth.isAuthenticated);
@@ -27,23 +27,15 @@ export const Root = () => {
         <Suspense fallback={<PageLoader />}>
           <ResponsiveContainer isAuthenticated={isAuthenticated}>
             <Switch>
-              <Route exact path="/" component={HomeContainer} />
               <Route exact path="/login" component={LoginContainer} />
               <Route exact path="/signup" component={SignupContainer} />
               <Route path="/movie/:id" component={SingleMovie} />
               <PrivateRoute
                 isAuthenticated={isAuthenticated}
-                path="/movies/:id"
-              />
-              <PrivateRoute
-                isAuthenticated={isAuthenticated}
                 component={Favourites}
                 path="/favourites"
               />
-              <PrivateRoute
-                // component={}
-                path="/favourites/:id"
-              />
+              <Route path="/" component={HomeContainer} />
               {/* <Route component={NoMatch} /> */}
             </Switch>
           </ResponsiveContainer>

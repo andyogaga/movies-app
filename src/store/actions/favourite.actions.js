@@ -1,12 +1,11 @@
 import {
   GET_FAVOURITES,
   VIEW_FAVOURITE,
-  REMOVE_FAVOURITE,
 } from "./action.types";
 import { callApi } from "../../utils";
 import { showFeedback } from "./feedbackActions";
 
-export const getFavourites = (id) => async (dispatch) => {
+export const getFavourites = (id, setLoading) => async (dispatch) => {
   try {
     const favourites = await callApi(`/movie/favorites/${id}`, null, "GET");
     if (Array.isArray(favourites)) {
@@ -18,6 +17,8 @@ export const getFavourites = (id) => async (dispatch) => {
   } catch (error) {
     //Handle Error
     dispatch(showFeedback("Error Connecting, try again"));
+  } finally {
+    setLoading(false)
   }
 };
 

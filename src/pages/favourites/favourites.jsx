@@ -1,11 +1,11 @@
 import React from "react";
-import { Grid } from "semantic-ui-react";
+import { Grid, Pagination } from "semantic-ui-react";
 import MovieCard from "../../components/movie-card.component";
 import { removeFavourite } from "../../store/actions/favourite.actions";
 import { useDispatch } from "react-redux";
-import { arrayOf, shape } from "prop-types";
+import { shape, func } from "prop-types";
 
-const Favourites = ({ favourites, user, history }) => {
+const Favourites = ({ favourites, user, history, setPage, setLoading }) => {
   const dispatch = useDispatch();
 
   const onRemoveFavourite = (id, cb) => {
@@ -13,28 +13,46 @@ const Favourites = ({ favourites, user, history }) => {
   };
 
   return (
-    <Grid columns={4} doubling>
-      {Array.isArray(favourites) &&
-        favourites.map((favourite) => {
-          return (
-            <Grid.Column key={favourite.id}>
-              <MovieCard
-                movie={favourite}
-                isFavourite
-                removeFavourite={onRemoveFavourite}
-                user={user}
-                history={history}
-              />
-            </Grid.Column>
-          );
-        })}
-    </Grid>
+    <>
+      <Grid columns={4} doubling>
+        {
+          favourites().map((favourite) => {
+            return (
+              <Grid.Column key={favourite.id}>
+                <MovieCard
+                  movie={favourite}
+                  isFavourite
+                  removeFavourite={onRemoveFavourite}
+                  user={user}
+                  history={history}
+                  setLoading={setLoading}
+                />
+              </Grid.Column>
+            );
+          })}
+      </Grid>
+      <Pagination
+        style={{ marginTop: "2rem", textAlign: "center" }}
+        boundaryRange={0}
+        defaultActivePage={1}
+        onPageChange={(e, data) => {
+          setPage(data.activePage);
+        }}
+        ellipsisItem={null}
+        firstItem={null}
+        lastItem={null}
+        siblingRange={1}
+        totalPages={2}
+      />
+    </>
   );
 };
 
 Favourites.propTypes = {
-  favourites: arrayOf(shape({})),
+  favourites: func,
   user: shape({}),
-  history: shape({})
-}
+  history: shape({}),
+  setPage: func,
+  setLoading: func
+};
 export default Favourites;

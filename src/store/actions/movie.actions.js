@@ -2,7 +2,7 @@ import {GET_MOVIES } from './action.types';
 import {callApi} from '../../utils';
 import {showFeedback} from './feedbackActions';
 
-export const getMovies = page => async dispatch => {
+export const getMovies = (page, setLoading) => async dispatch => {
   try {
     const movies = await callApi(`/movie/list?page=${page}`, null, 'GET');
     if (movies && Array.isArray(movies.content)) {
@@ -12,8 +12,9 @@ export const getMovies = page => async dispatch => {
       });
     }
   } catch (error) {
-    //Handle Error
     dispatch(showFeedback('Error Connecting, try again'));
+  } finally {
+    setLoading(false)
   }
 };
 

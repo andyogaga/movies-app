@@ -1,4 +1,4 @@
-import React, {useState} from "react";
+import React from "react";
 import { Card, Image, Icon } from "semantic-ui-react";
 import moment from "moment";
 import { bool, func, shape, string, arrayOf } from "prop-types";
@@ -11,9 +11,9 @@ const MovieCard = ({
   removeFavourite,
   isFavourite,
   history,
+  setLoading,
   user
 }) => {
-  const [loading, setLoading] = useState(false)
   const dispatch = useDispatch()
   return (
     <Card>
@@ -44,16 +44,15 @@ const MovieCard = ({
           {isFavourite ? (
             <Icon
               circular
+              style={{cursor: 'pointer'}}
               inverted
               color="red"
               name="delete"
               onClick={() => {
                 if (typeof removeFavourite === "function") {
-                  setLoading(true)
                   removeFavourite(movie.id, res => {
                     if(res){
-                      dispatch(getFavourites(user && user.id))
-                      setLoading(false)
+                      dispatch(getFavourites(user && user.id, setLoading))
                     }
                   });
                 }
@@ -91,6 +90,10 @@ MovieCard.propTypes = {
   history: shape({
     push: func,
   }),
+  setLoading: func,
+  user: shape({
+    id: number
+  })
 };
 
 export default MovieCard;
