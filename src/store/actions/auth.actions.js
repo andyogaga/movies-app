@@ -1,6 +1,6 @@
 import { callApi } from "../../utils";
 import { LOGIN } from "./action.types";
-import { showFeedback } from "./feedbackActions";
+import { toast } from "react-toastify";
 
 export const sendLoginRequest = (
   { username, password, setSubmitting },
@@ -16,15 +16,10 @@ export const sendLoginRequest = (
       history.push("/");
     }
   } catch (error) {
-    dispatch(
-      showFeedback(
-        error &&
-          error.response &&
-          error.response.data &&
-          error.response.data.message
-          ? error.response.data.message
-          : "Error in connection"
-      )
+    toast(
+      error && error.response && error.response.data && error.response.data
+        ? error.response.data
+        : "Error in connection"
     );
   } finally {
     setSubmitting(false);
@@ -39,18 +34,16 @@ export const sendSignupRequest = (data, history) => async (dispatch) => {
     "POST"
   )
     .then(() => {
-      dispatch(sendLoginRequest({ username, password, setSubmitting }, history));
+      dispatch(
+        sendLoginRequest({ username, password, setSubmitting }, history)
+      );
     })
     .catch((error) => {
-      dispatch(
-        showFeedback(
-          error &&
-            error.response &&
-            error.response.data &&
-            error.response.data.message
-            ? error.response.data.message
-            : "Error in connection"
-        )
+      toast(
+        error && error.response && error.response.data && error.response.data
+          ? error.response.data
+          : "Error in connection"
       );
+      setSubmitting(false);
     });
 };

@@ -1,9 +1,6 @@
-import {
-  GET_FAVOURITES,
-  VIEW_FAVOURITE,
-} from "./action.types";
+import { GET_FAVOURITES, VIEW_FAVOURITE } from "./action.types";
 import { callApi } from "../../utils";
-import { showFeedback } from "./feedbackActions";
+import { toast } from "react-toastify";
 
 export const getFavourites = (id, setLoading) => async (dispatch) => {
   try {
@@ -15,10 +12,13 @@ export const getFavourites = (id, setLoading) => async (dispatch) => {
       });
     }
   } catch (error) {
-    //Handle Error
-    dispatch(showFeedback("Error Connecting, try again"));
+    toast(
+      error && error.response && error.response.data && error.response.data
+        ? error.response.data
+        : "Error in connection"
+    );
   } finally {
-    setLoading(false)
+    setLoading(false);
   }
 };
 
@@ -32,58 +32,39 @@ export const getFavouriteDetail = (id) => async (dispatch) => {
       });
     }
   } catch (error) {
-    dispatch(
-      showFeedback(
-        error &&
-          error.response &&
-          error.response.data &&
-          error.response.data.message
-          ? error.response.data.message
-          : "Error in connection"
-      )
+    toast(
+      error && error.response && error.response.data && error.response.data
+        ? error.response.data
+        : "Error in connection"
     );
   }
 };
 
-export const addFavourite = ({ movieId, userId }, cb = () => {}) => async (
-  dispatch
-) => {
+export const addFavourite = ({ movieId, userId }, cb = () => {}) => async () => {
   callApi(`/movie/favorite/add`, { movieId, userId }, "POST")
     .then(() => {
       cb("Added");
     })
     .catch((error) => {
-      dispatch(
-        showFeedback(
-          error &&
-            error.response &&
-            error.response.data &&
-            error.response.data.message
-            ? error.response.data.message
-            : "Error in connection"
-        )
+      toast(
+        error && error.response && error.response.data && error.response.data
+          ? error.response.data
+          : "Error in connection"
       );
       cb();
     });
 };
 
-export const removeFavourite = ({ movieId, userId }, cb = () => {}) => async (
-  dispatch
-) => {
+export const removeFavourite = ({ movieId, userId }, cb = () => {}) => async () => {
   callApi(`/movie/favorite/remove`, { movieId, userId }, "PUT")
     .then(() => {
       cb("Removed");
     })
     .catch((error) => {
-      dispatch(
-        showFeedback(
-          error &&
-            error.response &&
-            error.response.data &&
-            error.response.data.message
-            ? error.response.data.message
-            : "Error in connection"
-        )
+      toast(
+        error && error.response && error.response.data && error.response.data
+          ? error.response.data
+          : "Error in connection"
       );
       cb();
     });

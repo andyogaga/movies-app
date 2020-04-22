@@ -1,6 +1,6 @@
 import {GET_MOVIES } from './action.types';
 import {callApi} from '../../utils';
-import {showFeedback} from './feedbackActions';
+import { toast } from "react-toastify";
 
 export const getMovies = (page, setLoading) => async dispatch => {
   try {
@@ -12,7 +12,11 @@ export const getMovies = (page, setLoading) => async dispatch => {
       });
     }
   } catch (error) {
-    dispatch(showFeedback('Error Connecting, try again'));
+    toast(
+      error && error.response && error.response.data && error.response.data
+        ? error.response.data
+        : "Error in connection"
+    );
   } finally {
     setLoading(false)
   }
@@ -20,22 +24,17 @@ export const getMovies = (page, setLoading) => async dispatch => {
 
 export const getMovieDetail = (
   id, cb = () => {}
-) => async dispatch => {
+) => async () => {
   try {
     const movie = await callApi(`/movie/detail/${id}`, null, 'GET');
     if (movie) {
       cb(movie)
     }
   } catch (error) {
-    dispatch(
-      showFeedback(
-        error &&
-          error.response &&
-          error.response.data &&
-          error.response.data.message
-          ? error.response.data.message
-          : 'Error in connection',
-      ),
+    toast(
+      error && error.response && error.response.data && error.response.data
+        ? error.response.data
+        : "Error in connection"
     );
     cb(null)
   }

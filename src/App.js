@@ -1,7 +1,7 @@
 import React, { Suspense, lazy } from "react";
 import "./App.css";
 import { Router, Route, Switch } from "react-router-dom";
-
+import {ToastContainer} from 'react-toastify'
 import { createBrowserHistory } from "history";
 import { useSelector, Provider } from "react-redux";
 import PageLoader from "./components/loader.component";
@@ -13,11 +13,13 @@ import SignupContainer from "./pages/signup/signup.container";
 import HomeContainer from "./pages/home/home.container";
 import SingleMovie from "./pages/single/single-movie.container";
 import { PersistGate } from "redux-persist/integration/react";
+import 'react-toastify/dist/ReactToastify.css'
 
 const Favourites = lazy(() =>
   import("./pages/favourites/favourites.container")
 );
 export const history = createBrowserHistory();
+
 
 export const Root = () => {
   const isAuthenticated = useSelector(({ auth }) => auth.isAuthenticated);
@@ -41,6 +43,7 @@ export const Root = () => {
           </ResponsiveContainer>
         </Suspense>
       </Router>
+      <ToastContainer autoClose={4000} hideProgressBar />
     </div>
   );
 };
