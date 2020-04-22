@@ -2,8 +2,16 @@ import React from "react";
 import { Card, Image, Icon } from "semantic-ui-react";
 import moment from "moment";
 import { Link } from "react-router-dom";
+import { bool, func, shape, string, arrayOf } from "prop-types";
+import { number } from "yup";
 
-const MovieCard = ({ movie, removeFavourite, isFavourite }) => {
+const MovieCard = ({
+  movie,
+  removeFavourite,
+  isFavourite,
+  isAuthenticated,
+  history
+}) => {
   return (
     <Card>
       <Image
@@ -21,7 +29,7 @@ const MovieCard = ({ movie, removeFavourite, isFavourite }) => {
       </Card.Content>
       <Card.Content extra>
         <div className="right">
-          {!isFavourite ? (
+          {isFavourite ? (
             <Icon
               circular
               inverted
@@ -34,20 +42,49 @@ const MovieCard = ({ movie, removeFavourite, isFavourite }) => {
               }}
             />
           ) : null}
-
+          {isAuthenticated && !isFavourite ? (
+            <Icon
+              circular
+              inverted
+              color="green"
+              name="add"
+              onClick={() => {
+                if (typeof removeFavourite === "function") {
+                  removeFavourite(movie.id);
+                }
+              }}
+            />
+          ) : null}
           <Icon
             circular
             inverted
-            color="blue"
+            color="green"
             name="eye"
-            as={Link}
-            onClick={() => {}}
-            to={`/movie/${movie.id}`}
+            link
+            onClick={() => {
+              history.push(`/movie/${movie.id}`)
+            }}
           />
         </div>
       </Card.Content>
     </Card>
   );
+};
+
+MovieCard.propTypes = {
+  isAuthenticated: bool,
+  isFavourite: bool,
+  removeFavourite: func,
+  movie: shape({
+    id: number,
+    posterPath: string,
+    overview: string,
+    releaseDate: arrayOf(number),
+    title: string,
+  }),
+  history: shape({
+    push: func
+  })
 };
 
 export default MovieCard;

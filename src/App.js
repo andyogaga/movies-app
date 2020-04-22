@@ -11,8 +11,10 @@ import PrivateRoute from "./components/private.route";
 import store from "./store";
 import SignupContainer from "./pages/signup/signup.container";
 import HomeContainer from "./pages/home/home.container";
-import SingleMovie from './pages/single/single-movie.container'
-const Favourites = lazy(() => import("./pages/favourites/favourites.container"))
+import SingleMovie from "./pages/single/single-movie.container";
+const Favourites = lazy(() =>
+  import("./pages/favourites/favourites.container")
+);
 const history = createBrowserHistory();
 
 export const Root = () => {
@@ -29,13 +31,10 @@ export const Root = () => {
               <Route path="/movie/:id" component={SingleMovie} />
               <PrivateRoute
                 isAuthenticated={isAuthenticated}
-                path="/my/movies"
-              />
-              <PrivateRoute
-                isAuthenticated={isAuthenticated}
                 path="/movies/:id"
               />
               <PrivateRoute
+                isAuthenticated={isAuthenticated}
                 component={Favourites}
                 path="/favourites"
               />

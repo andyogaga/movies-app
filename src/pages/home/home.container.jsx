@@ -6,19 +6,19 @@ import { Container, Header } from "semantic-ui-react";
 import { WelcomeBoard } from "../../common/styles";
 import { bool, arrayOf, shape } from "prop-types";
 
-const HomeContainer = ({ isAuthenticated, movies }) => {
+const HomeContainer = ({ isAuthenticated, movies, history }) => {
   const dispatch = useDispatch();
   const [page, setPage] = useState(1);
   useEffect(() => {
     dispatch(getMovies(page));
-  }, []);
+  }, [page]);
   return (
     <>
       <WelcomeBoard >
         <Header as="h1" color="blue" >Movies</Header>
       </WelcomeBoard>
       <Container>
-        <Home movies={movies} />
+        <Home movies={movies} isAuthenticated={isAuthenticated} setPage={setPage} history={history}/>
       </Container>
     </>
   );
@@ -33,7 +33,8 @@ const mapState = ({ auth, movies }) => {
 
 HomeContainer.propTypes = {
   isAuthenticated: bool,
-  movies: arrayOf(shape({}))
+  movies: arrayOf(shape({})),
+  history: shape({})
 }
 
 export default connect(mapState)(HomeContainer);
