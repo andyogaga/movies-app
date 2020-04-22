@@ -4,6 +4,7 @@ import moment from "moment";
 import { useDispatch } from "react-redux";
 import { addFavourite } from "../../store/actions/favourite.actions";
 import { shape, bool, number, func, string, arrayOf } from "prop-types";
+import YoutubeVideos from "./youtube-videos";
 
 const SingleMovieDetails = ({
   movie,
@@ -14,6 +15,7 @@ const SingleMovieDetails = ({
 }) => {
   const dispatch = useDispatch();
   return (
+    <>
     <Grid columns={2}>
       <Grid.Column>
         <Image src={movie.posterPath} wrapped ui verticalAlign fluid rounded />
@@ -69,6 +71,9 @@ const SingleMovieDetails = ({
         ) : null}
       </Grid.Column>
     </Grid>
+    <YoutubeVideos videos={movie.vidoes} />
+    </>
+    
   );
 };
 
